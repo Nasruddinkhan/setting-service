@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: ${project.artifactId}
+  annotations:
+    haproxy.router.openshift.io/timeout: 120s
+spec:
+  host: ${host}
+  path: /${project.artifactId}
+  to:
+    kind: Service
+    name: ${project.artifactId}
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge

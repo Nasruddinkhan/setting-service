@@ -240,6 +240,7 @@
 				<spring.profiles.active>openshift</spring.profiles.active>
 				<docker.registry>image-registry.openshift-image-registry.svc:5000</docker.registry>
 				<k8s.namespace>default</k8s.namespace>
+				<host>${project.artifactId}.apps.example.com</host>
 				<spring-boot.build-image.imageName>${docker.registry}/${k8s.namespace}/${project.artifactId}:${project.version}</spring-boot.build-image.imageName>
 				<jkube.generator.name>${spring-boot.build-image.imageName}</jkube.generator.name>
 			</properties>

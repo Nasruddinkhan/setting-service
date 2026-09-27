@@ -215,6 +215,7 @@ The project supports both Kubernetes and OpenShift manifest generation through M
 - The `openshift` profile generates OpenShift resources.
 - JKube uses the image registry, namespace, artifact id, and project version to build the image reference.
 - `src/main/jkube/deployment.yml` injects the active Spring profile into the generated container environment.
+- `src/main/jkube/router.yml` customizes the OpenShift Route with host, path, timeout, service target, and edge TLS termination.
 
 The generated manifests are written under `target/classes/META-INF/jkube`.
 
