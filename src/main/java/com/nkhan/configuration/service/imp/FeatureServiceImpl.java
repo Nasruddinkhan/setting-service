@@ -202,7 +202,7 @@ public class FeatureServiceImpl implements FeatureService {
     }
 
     private boolean isEffective(FeatureRuleEntity rule) {
-        LocalDate today = LocalDate.now(ZoneId.of("Ri"));
+        LocalDate today = LocalDate.now(ZoneId.of("Asia/Riyadh"));
         return (rule.getStartDate() != null && today.isBefore(rule.getStartDate()))
                 || (rule.getEndDate() != null && today.isAfter(rule.getEndDate()));
     }
