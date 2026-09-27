@@ -1,6 +1,9 @@
+metadata:
+  name: ${project.artifactId}
 spec:
   template:
     spec:
+      serviceAccount: springboot-serviceaccount
       containers:
         - name: spring-boot
           env:
