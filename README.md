@@ -199,6 +199,14 @@ The generated file is useful for API sharing, gateway review, and Postman or cli
 
 A Postman collection is included under the `postman` directory. It contains requests for the feature configuration APIs and uses collection variables such as base URL, username, feature id, rule id, and condition id.
 
+## Docker Image
+
+A Dockerfile is included for building a runtime image from the packaged Spring Boot jar. Build the jar first, then build the image from the project root.
+
+The container listens on port `8080`. Runtime configuration such as Spring profile, Oracle JDBC URL, username, and password should be supplied through environment variables.
+
+The `.dockerignore` file keeps source files, Git metadata, local documentation, Postman files, and Maven build internals out of the Docker build context while keeping the packaged jar available for the image build.
+
 ## Kubernetes and OpenShift
 
 The project supports both Kubernetes and OpenShift manifest generation through Maven profiles.
