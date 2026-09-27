@@ -1,0 +1,773 @@
+{
+  "info": {
+    "_postman_id": "1fbce2bd-1aa8-4cd7-9113-8f89b2bb4575",
+    "name": "Config Service - Feature Configuration",
+    "description": "CRUD requests for FEATURE, USER_ATTRIBUTE, FEATURE_RULE, and RULE_CONDITION APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User Attributes",
+      "item": [
+        {
+          "name": "Create User Attribute - user_id",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attributeKey\": \"{{attributeKey}}\",\n  \"dataType\": \"STRING\",\n  \"sourceType\": \"CLAIM\",\n  \"sourcePath\": \"sub\",\n  \"priority\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-attributes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-attributes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create User Attribute - channel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attributeKey\": \"channel\",\n  \"dataType\": \"STRING\",\n  \"sourceType\": \"HEADER\",\n  \"sourcePath\": \"X-Channel\",\n  \"priority\": 20\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-attributes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-attributes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All User Attributes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-attributes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-attributes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User Attribute By Key",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-attributes/{{attributeKey}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-attributes",
+                "{{attributeKey}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User Attribute",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attributeKey\": \"{{attributeKey}}\",\n  \"dataType\": \"STRING\",\n  \"sourceType\": \"CLAIM\",\n  \"sourcePath\": \"sub\",\n  \"priority\": 15\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-attributes/{{attributeKey}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-attributes",
+                "{{attributeKey}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User Attribute",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-attributes/{{attributeKey}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-attributes",
+                "{{attributeKey}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Features",
+      "item": [
+        {
+          "name": "Create Feature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featureId\": \"{{featureId}}\",\n  \"displayName\": \"Instant Transfer\",\n  \"description\": \"Controls instant transfer availability.\",\n  \"blockedGlobally\": false,\n  \"msgEn\": \"This service is not available for your profile.\",\n  \"msgAr\": \"هذه الخدمة غير متاحة لملفك الشخصي.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/features",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Features",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Blocked Features For Username",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features/blocked?username={{username}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "blocked"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "{{username}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Globally Blocked Features",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features/blocked/global",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "blocked",
+                "global"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Feature Access Map For Username",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features/access?username={{username}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "access"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "{{username}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Feature Access Graph For Username",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features/access/graph?username={{username}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "access",
+                "graph"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "{{username}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Feature By Id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/features/{{featureId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "{{featureId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Feature",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featureId\": \"{{featureId}}\",\n  \"displayName\": \"Instant Transfer\",\n  \"description\": \"Updated instant transfer feature configuration.\",\n  \"blockedGlobally\": false,\n  \"msgEn\": \"This service is not available for your profile.\",\n  \"msgAr\": \"هذه الخدمة غير متاحة لملفك الشخصي.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/features/{{featureId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "{{featureId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Feature",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/features/{{featureId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "features",
+                "{{featureId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feature Rules",
+      "item": [
+        {
+          "name": "Create Feature Rule",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.body && json.body.ruleId) {",
+                  "  pm.collectionVariables.set('ruleId', json.body.ruleId);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featureId\": \"{{featureId}}\",\n  \"ruleCode\": \"{{ruleCode}}\",\n  \"blocked\": true,\n  \"startDate\": \"2026-01-01\",\n  \"endDate\": null,\n  \"denyMsgEn\": \"This user is blocked from transfers.\",\n  \"denyMsgAr\": \"هذا المستخدم محظور من التحويلات.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/feature-rules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feature-rules"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Feature Rules",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/feature-rules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feature-rules"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Feature Rule By Id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/feature-rules/{{ruleId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feature-rules",
+                "{{ruleId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Feature Rule",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featureId\": \"{{featureId}}\",\n  \"ruleCode\": \"{{ruleCode}}\",\n  \"blocked\": true,\n  \"startDate\": \"2026-01-01\",\n  \"endDate\": null,\n  \"denyMsgEn\": \"This user is blocked from transfers.\",\n  \"denyMsgAr\": \"هذا المستخدم محظور من التحويلات.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/feature-rules/{{ruleId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feature-rules",
+                "{{ruleId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Feature Rule",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/feature-rules/{{ruleId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feature-rules",
+                "{{ruleId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rule Conditions",
+      "item": [
+        {
+          "name": "Create Condition - Disable Single User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.body && json.body.conditionId) {",
+                  "  pm.collectionVariables.set('conditionId', json.body.conditionId);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruleId\": {{ruleId}},\n  \"attributeKey\": \"{{attributeKey}}\",\n  \"attributeValue\": [\"{{blockedUserId}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Condition - Disable Multiple Users",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruleId\": {{ruleId}},\n  \"attributeKey\": \"{{attributeKey}}\",\n  \"attributeValue\": [\"U999\", \"U888\", \"U777\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Rule Conditions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Rule Condition By Id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions/{{conditionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions",
+                "{{conditionId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Rule Condition",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruleId\": {{ruleId}},\n  \"attributeKey\": \"{{attributeKey}}\",\n  \"attributeValue\": [\"{{blockedUserId}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions/{{conditionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions",
+                "{{conditionId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Values To Rule Condition",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "x-nkhan-client-version",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"values\": [\"U555\", \"U444\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions/{{conditionId}}/values",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions",
+                "{{conditionId}}",
+                "values"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Rule Condition",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rule-conditions/{{conditionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rule-conditions",
+                "{{conditionId}}"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8087/config-service/api/v1"
+    },
+    {
+      "key": "requestId",
+      "value": "postman-request"
+    },
+    {
+      "key": "featureId",
+      "value": "instant_transfer"
+    },
+    {
+      "key": "attributeKey",
+      "value": "user_id"
+    },
+    {
+      "key": "username",
+      "value": "U999"
+    },
+    {
+      "key": "blockedUserId",
+      "value": "U999"
+    },
+    {
+      "key": "ruleCode",
+      "value": "FEAT_USER_BLOCKED"
+    },
+    {
+      "key": "endpointGroupId",
+      "value": "1"
+    },
+    {
+      "key": "ruleId",
+      "value": "1"
+    },
+    {
+      "key": "conditionId",
+      "value": "1"
+    }
+  ]
+}

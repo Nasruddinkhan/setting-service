@@ -1,0 +1,30 @@
+services:
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: config-service-oracle
+    hostname: oracle-db
+    shm_size: "1g"
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:?Set ORACLE_PASSWORD}
+      APP_USER: ${APP_USER:-CONFIG_SERVICE}
+      APP_USER_PASSWORD: ${APP_USER_PASSWORD:?Set APP_USER_PASSWORD}
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./docker/oracle/init:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    networks:
+      - config-service-net
+
+volumes:
+  oracle-data:
+
+networks:
+  config-service-net:
+    driver: bridge

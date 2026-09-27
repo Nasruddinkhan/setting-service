@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Read values from application.properties -->
+    <springProperty scope="context"
+                    name="appName"
+                    source="spring.application.name"
+                    defaultValue="application"/>
+
+    <springProperty scope="context"
+                    name="activeProfile"
+                    source="spring.profiles.active"
+                    defaultValue="local"/>
+
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [${appName},%X{traceId:-},%X{spanId:-},%X{correlationId:-},%X{sessionId:-}] [%thread] %logger{36} : %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="CONSOLE"/>
+        <queueSize>1024</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>false</includeCallerData>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <!-- =================================================================== -->
+    <!-- LOCAL / DEV                                                         -->
+    <!-- =================================================================== -->
+
+    <springProfile name="local,dev">
+
+        <!-- Hibernate generated SQL -->
+        <logger name="org.hibernate.SQL" level="DEBUG"/>
+
+        <!-- Hibernate SQL parameter values -->
+        <logger name="org.hibernate.orm.jdbc.bind" level="TRACE"/>
+
+        <!-- Hibernate result loading -->
+        <logger name="org.hibernate.orm.results.loading" level="DEBUG"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+    </springProfile>
+
+    <!-- =================================================================== -->
+    <!-- PRODUCTION / HIGHER ENVIRONMENTS                                    -->
+    <!-- =================================================================== -->
+
+    <springProfile name="!local &amp; !dev">
+
+        <!-- Disable verbose Hibernate logging -->
+        <logger name="org.hibernate.SQL" level="WARN"/>
+        <logger name="org.hibernate.orm.jdbc.bind" level="WARN"/>
+        <logger name="org.hibernate.orm.results.loading" level="WARN"/>
+
+        <root level="INFO">
+            <appender-ref ref="ASYNC_CONSOLE"/>
+        </root>
+
+    </springProfile>
+
+</configuration>
