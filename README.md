@@ -217,6 +217,12 @@ The project supports both Kubernetes and OpenShift manifest generation through M
 - `src/main/jkube/deployment.yml` injects the active Spring profile into the generated container environment.
 - `src/main/jkube/router.yml` customizes the OpenShift Route with host, path, timeout, service target, and edge TLS termination.
 
+Generate OpenShift YAML with:
+
+```bash
+mvn clean package -DskipTests -Popenshift
+```
+
 The generated manifests are written under `target/classes/META-INF/jkube`.
 
 ## Build and Verification
